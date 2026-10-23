@@ -3,401 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog - Store Kyzann</title>
-    <!-- Font Awesome untuk Ikon -->
+    <title>Katalog - Kyzann Bussines</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/list.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap');
-
-        * {
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Quicksand', sans-serif;
-            -webkit-tap-highlight-color: transparent;
         }
-
-        body {
-            color: #ffffff;
-            background-color: #1a050b;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            overflow-x: hidden;
-            position: relative;
-            padding-bottom: 80px; /* Jarak untuk bottom navigation */
+        button, a, input, *:focus {
+            outline: none !important;
         }
-
-        /* =========================================
-           LATAR BELAKANG GAMBAR BERGERAK
-           ========================================= */
-        .bg-cute {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
+        .cat-btn, .sub-cat-btn, .order-btn-card {
+            border-style: solid !important;
         }
-
-        .bg-cute::before {
-            content: "";
-            position: absolute;
-            top: -10%; left: -10%; width: 120%; height: 120%;
-            background-image: url('Fotokedua.jpg'); 
-            background-size: cover;
-            background-position: center;
-            animation: moveBg 22s ease-in-out infinite alternate;
+        .product-card .order-btn-card {
+            background: #f43f5e !important;
+            color: #ffffff !important;
+            font-weight: bold !important;
+            border: none !important;
+            padding: 10px 14px !important;
+            border-radius: 8px !important;
+            cursor: pointer !important;
+            box-shadow: 0 4px 10px rgba(244, 63, 94, 0.4) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
-
-        .bg-cute::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(35, 8, 16, 0.92), rgba(15, 3, 7, 0.96)); 
-            backdrop-filter: blur(5px);
-        }
-
-        @keyframes moveBg {
-            0% { transform: scale(1) translate(0, 0); }
-            50% { transform: scale(1.06) translate(-1.5%, -1%); }
-            100% { transform: scale(1.1) translate(1%, -1.5%); }
-        }
-
-        .container {
-            width: 100%;
-            max-width: 480px;
-            padding: 20px 18px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* =========================================
-           HEADER ATAS
-           ========================================= */
-        .top-header {
+        .content-card-body .order-btn-card {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .header-avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #f43f5e;
-            box-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
-        }
-
-        .header-title {
-            font-size: 18px;
-            font-weight: 800;
-            color: #38bdf8;
-            letter-spacing: 0.5px;
-        }
-
-        /* =========================================
-           BANNER SLIDER OTOMATIS
-           ========================================= */
-        .banner-card {
-            background: linear-gradient(135deg, #881337, #be123c);
-            border: 2px solid #fb7185;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(190, 18, 60, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .banner-content {
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .banner-content.fade-out {
-            opacity: 0;
-            transform: translateX(-10px);
-        }
-
-        .banner-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            padding: 3px 12px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 800;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            letter-spacing: 0.5px;
-            z-index: 5;
-        }
-
-        .banner-title {
-            font-size: 17px;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-right: 65px; 
-            line-height: 1.3;
-        }
-
-        .banner-title i {
-            color: #f59e0b;
-            flex-shrink: 0;
-        }
-
-        .banner-desc {
-            font-size: 12px;
-            color: #fecdd3;
-            line-height: 1.5;
-            font-weight: 600;
-            margin-bottom: 15px;
-            min-height: 36px;
-        }
-
-        .banner-dots {
-            display: flex;
             justify-content: center;
             gap: 8px;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active {
-            width: 22px;
+            padding: 12px;
             border-radius: 10px;
-            background: #ffffff;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-        }
-
-        /* =========================================
-           MENU KATEGORI (GESER HORIZONTAL)
-           ========================================= */
-        .category-container {
-            margin-bottom: 20px;
-        }
-
-        .category-scroll {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            scrollbar-width: none;
-        }
-
-        .category-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        .cat-btn {
-            background: rgba(45, 10, 22, 0.9);
-            border: 2px dashed #be123c;
-            border-radius: 20px;
-            padding: 10px 18px;
-            color: #ffffff;
-            font-size: 12px;
-            font-weight: 800;
-            white-space: nowrap;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .cat-btn i {
+            color: #ffffff !important;
+            font-weight: 600;
             font-size: 14px;
-            color: #38bdf8;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-
-        .cat-btn:hover, .cat-btn.active {
-            background: #be123c;
-            border-style: solid;
-            border-color: #fb7185;
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(244, 63, 94, 0.4);
+        #productModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
-
-        .cat-btn.active i {
-            color: #fef08a;
+        #productModal.show {
+            display: flex !important;
         }
-
-        /* =========================================
-           SECTION TITLE BAR
-           ========================================= */
-        .section-title-bar {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 18px;
-            padding: 12px 20px;
+        .modal-box {
+            background: #1f1124;
+            border: 1px solid #f43f5e;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 360px;
+            padding: 20px;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+        }
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-            border: 2px solid #fb7185;
-        }
-
-        .section-title-text {
-            color: #881337;
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .section-title-bar i {
-            color: #38bdf8;
-            font-size: 16px;
-        }
-
-        /* =========================================
-           KARTU KONTEN KATEGORI / KOSONG
-           ========================================= */
-        .content-card {
-            background: rgba(30, 7, 15, 0.95);
-            border: 2px solid #be123c;
-            border-radius: 25px;
-            padding: 22px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .content-card-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 15px;
-            font-weight: 800;
-            color: #38bdf8;
-            margin-bottom: 12px;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
             padding-bottom: 10px;
-            border-bottom: 1px dashed rgba(190, 18, 60, 0.5);
+            margin-bottom: 12px;
         }
-
-        .content-card-body {
-            color: #cbd5e1;
-            font-size: 13px;
-            line-height: 1.6;
-            font-weight: 600;
+        .modal-header h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #38bdf8;
         }
-
-        .wa-group-btn {
-            display: block;
+        .close-btn {
+            background: none;
+            border: none;
+            color: #f43f5e;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .modal-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f43f5e;
+            margin-bottom: 12px;
+        }
+        .qty-control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin: 15px 0;
-            padding: 12px 15px;
-            background: rgba(190, 18, 60, 0.3);
-            border: 1px solid #f43f5e;
-            border-radius: 15px;
-            color: #fef08a;
-            font-weight: 800;
-            text-decoration: none;
-            font-size: 13px;
-            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .qty-buttons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .qty-buttons button {
+            background: #f43f5e;
+            color: #fff;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .qty-buttons input {
+            width: 40px;
             text-align: center;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            border-radius: 6px;
+            padding: 4px 0;
         }
-
-        .wa-group-btn:hover {
-            background: #be123c;
-            color: #ffffff;
+        .modal-total-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+            margin-bottom: 15px;
+            font-size: 15px;
         }
-
-        .payment-info {
-            margin-top: 15px;
-            font-size: 11px;
-            color: #fda4af;
-            font-weight: 700;
+        .modal-total-box strong {
+            color: #4ade80;
+            font-size: 17px;
+        }
+        .checkout-btn {
+            width: 100%;
+            background: #25D366;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-        }
-
-        /* =========================================
-           NAVIGASI BAWAH (2 IKON)
-           ========================================= */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            background: rgba(26, 5, 11, 0.95);
-            backdrop-filter: blur(10px);
-            border-top: 2px dashed #be123c;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 14px 0;
-            z-index: 100;
-        }
-
-        .nav-item {
-            color: #fda4af;
-            font-size: 22px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .nav-item.active, .nav-item:hover {
-            color: #38bdf8;
-            transform: translateY(-2px);
+            gap: 8px;
         }
     </style>
 </head>
 <body>
 
-    <!-- KONTEN LATAR BELAKANG BERGAMBAR -->
     <div class="bg-cute"></div>
 
     <div class="container">
         
-        <!-- HEADER ATAS -->
         <div class="top-header">
             <div class="header-brand">
-                <img src="Fotoenji.jpg" alt="Logo" class="header-avatar">
-                <h1 class="header-title">STORE KYZANN</h1>
+                <img src="assets/images/Kyzenn.jpg" alt="Logo" class="header-avatar">
+                <h1 class="header-title">KYZANN BUSSINES</h1>
             </div>
         </div>
 
-        <!-- BANNER SLIDER OTOMATIS -->
         <div class="banner-card">
             <span class="banner-tag" id="bannerTag">PROMO</span>
             
             <div class="banner-content" id="bannerContent">
                 <div class="banner-title" id="bannerTitle">
-                    <i class="fa-solid fa-gem"></i> STORE KYZANN
+                    <i class="fa-solid fa-gem"></i> KYZANN BUSSINES
                 </div>
                 <div class="banner-desc" id="bannerDesc">
                     Pusat Aplikasi Premium & Layanan Virtual Terpercaya dengan Harga Terjangkau.
                 </div>
             </div>
 
-            <!-- DOTS SLIDER KONTROL -->
             <div class="banner-dots">
                 <div class="dot active" onclick="setSlide(0)"></div>
                 <div class="dot" onclick="setSlide(1)"></div>
@@ -405,23 +194,23 @@
             </div>
         </div>
 
-        <!-- MENU KATEGORI (8 KATEGORI LENGKAP) -->
         <div class="category-container">
             <div class="category-scroll">
+                <!-- Urutan tombol: Information di paling kiri (sebelah Editing App) -->
                 <button class="cat-btn active" onclick="switchCategory('info', this)">
                     <i class="fa-solid fa-circle-info"></i> INFORMATION
                 </button>
                 <button class="cat-btn" onclick="switchCategory('editing', this)">
                     <i class="fa-solid fa-wand-magic-sparkles"></i> EDITING APP
                 </button>
-                <button class="cat-btn" onclick="switchCategory('streaming', this)">
-                    <i class="fa-solid fa-tv"></i> STREAMING APP
+                <button class="cat-btn" onclick="switchCategory('education', this)">
+                    <i class="fa-solid fa-graduation-cap"></i> EDUCATION APP
                 </button>
                 <button class="cat-btn" onclick="switchCategory('music', this)">
                     <i class="fa-solid fa-music"></i> MUSIC APP
                 </button>
-                <button class="cat-btn" onclick="switchCategory('education', this)">
-                    <i class="fa-solid fa-graduation-cap"></i> EDUCATION APP
+                <button class="cat-btn" onclick="switchCategory('streaming', this)">
+                    <i class="fa-solid fa-tv"></i> STREAMING APP
                 </button>
                 <button class="cat-btn" onclick="switchCategory('other', this)">
                     <i class="fa-solid fa-shapes"></i> OTHER APP
@@ -435,34 +224,51 @@
             </div>
         </div>
 
-        <!-- JUDUL SECTION -->
         <div class="section-title-bar">
             <span class="section-title-text" id="sectionTitle">INFORMATION & RULES</span>
             <i class="fa-solid fa-star" id="sectionIcon"></i>
         </div>
 
-        <!-- KONTEN TAMPILAN SESUAI KATEGORI -->
-        <div id="categoryContent">
-            <!-- Default Content: INFORMATION -->
-            <div class="content-card">
-                <div class="content-card-header">
-                    <i class="fa-solid fa-heart" style="color:#f43f5e;"></i> WELCOME TO STORE KYZANN
-                </div>
-                <div class="content-card-body">
-                    Halo! Selamat datang di katalog resmi Store Kyzann.
-                    <a href="https://whatsapp.com/channel/0029VbBe4SiICVflZwbYRp08" class="wa-group-btn">
-                        ✦ Klik Masuk Grup WhatsApp Store Kyzann
-                    </a>
-                    <div class="payment-info">
-                        <i class="fa-solid fa-triangle-exclamation"></i> PEMBAYARAN HANYA MELALUI QRIS ALL PAYMENT
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="categoryContent" style="opacity: 1;"></div>
 
     </div>
 
-    <!-- BOTTOM NAVIGATION (2 IKON) -->
+    <!-- POP-UP MODAL ORDER -->
+    <div id="productModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modalProductName">Nama Produk</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-price" id="modalProductPrice">Rp 0</div>
+                
+                <div class="modal-desc-box" style="text-align: left; font-size: 13px; line-height: 1.6; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
+                    <strong><i class="fa-solid fa-circle-info" style="color:#f59e0b;"></i> Syarat & Ketentuan:</strong>
+                    <div id="modalProductDesc" style="margin-top: 6px; color: #ddd;"></div>
+                </div>
+
+                <div class="qty-control">
+                    <span>Jumlah Order:</span>
+                    <div class="qty-buttons">
+                        <button type="button" onclick="changeQty(-1)">-</button>
+                        <input type="text" id="modalQty" value="1" readonly>
+                        <button type="button" onclick="changeQty(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="modal-total-box">
+                    <span>Total Bayar:</span>
+                    <strong id="modalTotal">Rp 0</strong>
+                </div>
+
+                <button class="checkout-btn" onclick="checkoutWA()">
+                    <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="bottom-nav">
         <a href="index.html" class="nav-item">
             <i class="fa-solid fa-house"></i>
@@ -472,189 +278,6 @@
         </a>
     </div>
 
-    <!-- JAVASCRIPT SLIDER BANNER & SWITCH KATEGORI -->
-    <script>
-        /* =========================================
-           DATA BANNER SLIDER BERJALAN OTOMATIS
-           ========================================= */
-        const slides = [
-            {
-                tag: "PROMO",
-                title: `<i class="fa-solid fa-gem"></i> STORE KYZANN`,
-                desc: "Pusat Aplikasi Premium & Layanan Virtual Terpercaya dengan Harga Terjangkau."
-            },
-            {
-                tag: "DISCOUNT",
-                title: `<i class="fa-solid fa-bolt"></i> FLASH SALE SPECIAL`,
-                desc: "Semua aplikasi premium diskon hingga 20%! Klaim garansi aman & terpercaya."
-            },
-            {
-                tag: "HOT",
-                title: `<i class="fa-solid fa-fire"></i> BOT WA & NOKOS VIRTUAL`,
-                desc: "Sewa Bot WhatsApp & Nomor Kosong (Nokos) murah, cepat dan otomatis."
-            }
-        ];
-
-        let currentSlide = 0;
-        let slideTimer;
-
-        function updateSlideDisplay(index) {
-            const bannerTag = document.getElementById('bannerTag');
-            const bannerTitle = document.getElementById('bannerTitle');
-            const bannerDesc = document.getElementById('bannerDesc');
-            const bannerContent = document.getElementById('bannerContent');
-            const dots = document.querySelectorAll('.banner-dots .dot');
-
-            bannerContent.classList.add('fade-out');
-
-            setTimeout(() => {
-                bannerTag.innerText = slides[index].tag;
-                bannerTitle.innerHTML = slides[index].title;
-                bannerDesc.innerText = slides[index].desc;
-                bannerContent.classList.remove('fade-out');
-
-                dots.forEach((dot, i) => {
-                    if (i === index) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
-                });
-            }, 200);
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            updateSlideDisplay(currentSlide);
-        }
-
-        function setSlide(index) {
-            clearInterval(slideTimer);
-            currentSlide = index;
-            updateSlideDisplay(currentSlide);
-            startAutoSlide();
-        }
-
-        function startAutoSlide() {
-            slideTimer = setInterval(nextSlide, 3500);
-        }
-
-        startAutoSlide();
-
-        /* =========================================
-           LOGIKA SWITCH MENU KATEGORI
-           ========================================= */
-        function switchCategory(type, btnElement) {
-            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
-
-            const sectionTitle = document.getElementById('sectionTitle');
-            const categoryContent = document.getElementById('categoryContent');
-
-            if (type === 'info') {
-                sectionTitle.innerText = "INFORMATION & RULES";
-                categoryContent.innerHTML = `
-                    <div class="content-card">
-                        <div class="content-card-header">
-                            <i class="fa-solid fa-heart" style="color:#f43f5e;"></i> WELCOME TO STORE KYZANN
-                        </div>
-                        <div class="content-card-body">
-                            Halo! Selamat datang di katalog resmi Store Kyzann.
-                            <a href="" class="wa-group-btn">
-                                ✦ Klik Masuk Grup WhatsApp Store Kyzann
-                            </a>
-                            <div class="payment-info">
-                                <i class="fa-solid fa-triangle-exclamation"></i> PEMBAYARAN HANYA MELALUI QRIS ALL PAYMENT
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (type === 'editing') {
-                sectionTitle.innerText = "EDITING APPS";
-                categoryContent.innerHTML = `
-                    <div class="content-card">
-                        <div class="content-card-header">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i> EDITING APPS
-                        </div>
-                        <div class="content-card-body">
-                            Produk belum tersedia / sedang diperbarui.
-                        </div>
-                    </div>
-                `;
-            } else if (type === 'streaming') {
-                sectionTitle.innerText = "STREAMING APPS";
-                categoryContent.innerHTML = `
-                    <div class="content-card">
-                        <div class="content-card-header">
-                            <i class="fa-solid fa-tv"></i> STREAMING APPS
-                        </div>
-                        <div class="content-card-body">
-                            Produk belum tersedia / sedang diperbarui.
-                        </div>
-                    </div>
-                `;
-            } else if (type === 'music') {
-                sectionTitle.innerText = "MUSIC APPS";
-                categoryContent.innerHTML = `
-                    <div class="content-card">
-                        <div class="content-card-header">
-                            <i class="fa-solid fa-music"></i> MUSIC APPS
-                        </div>
-                        <div class="content-card-body">
-                            Produk belum tersedia / sedang diperbarui.
-                        </div>
-                    </div>
-                `;
-            } else if (type === 'education') {
-                sectionTitle.innerText = "EDUCATION APPS";
-                categoryContent.innerHTML = `
-                    <div class="content-card">
-                        <div class="content-card-header">
-                            <i class="fa-solid fa-graduation-cap"></i> EDUCATION APPS
-                        </div>
-                        <div class="content-card-body">
-                            Produk belum tersedia / sedang diperbarui.
-                        </div>
-                    </div>
-                `;
-            } else if (type === 'other') {
-                sectionTitle.innerText = "OTHER APPS";
-                categoryContent.innerHTML = `
-                    <div class="content-card">
-                        <div class="content-card-header">
-                            <i class="fa-solid fa-shapes"></i> OTHER APPS
-                        </div>
-                        <div class="content-card-body">
-                            Produk belum tersedia / sedang diperbarui.
-                        </div>
-                    </div>
-                `;
-            } else if (type === 'nokos') {
-                sectionTitle.innerText = "NOKOS VIRTUAL";
-                categoryContent.innerHTML = `
-                    <div class="content-card">
-                        <div class="content-card-header">
-                            <i class="fa-solid fa-sim-card"></i> NOKOS VIRTUAL
-                        </div>
-                        <div class="content-card-body">
-                            Produk belum tersedia / sedang diperbarui.
-                        </div>
-                    </div>
-                `;
-            } else if (type === 'sewabot') {
-                sectionTitle.innerText = "SEWA BOT WHATSAPP";
-                categoryContent.innerHTML = `
-                    <div class="content-card">
-                        <div class="content-card-header">
-                            <i class="fa-solid fa-robot"></i> SEWA BOT WHATSAPP
-                        </div>
-                        <div class="content-card-body">
-                            Produk belum tersedia / sedang diperbarui.
-                        </div>
-                    </div>
-                `;
-            }
-        }
-    </script>
+    <script src="assets/js/list.js"></script>
 </body>
 </html>
