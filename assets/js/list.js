@@ -1,5 +1,5 @@
 const slides = [
-    { tag: "PROMO", title: `<i class="fa-solid fa-gem"></i> STORE KYZANN`, desc: "Pusat Aplikasi Premium & Layanan Virtual Terpercaya dengan Harga Terjangkau." },
+    { tag: "PROMO", title: `<i class="fa-solid fa-gem"></i> KYZANN BUSSINES`, desc: "Pusat Aplikasi Premium & Layanan Virtual Terpercaya dengan Harga Terjangkau." },
     { tag: "DISCOUNT", title: `<i class="fa-solid fa-bolt"></i> FLASH SALE SPECIAL`, desc: "Semua aplikasi premium diskon hingga 20%! Klaim garansi aman & terpercaya." },
     { tag: "HOT", title: `<i class="fa-solid fa-fire"></i> BOT WA & NOKOS VIRTUAL`, desc: "Sewa Bot WhatsApp & Nomor Kosong (Nokos) murah, cepat dan otomatis." }
 ];
@@ -180,7 +180,7 @@ function switchCategory(type, btnElement) {
             categoryContent.innerHTML = `
                 <div class="content-card">
                     <div class="content-card-header">
-                        <i class="fa-solid fa-heart" style="color:#f43f5e;"></i> WELCOME TO STORE KYZANN
+                        <i class="fa-solid fa-heart" style="color:#f43f5e;"></i> WELCOME TO KYZANN BUSSINES
                     </div>
                     <div class="content-card-body">
                         <div id="typewriterText" style="min-height: 20px; text-align: center; margin-bottom: 10px; font-weight: 500;"></div>
@@ -217,14 +217,14 @@ function switchCategory(type, btnElement) {
                 </div>
             `;
             
-            typeWriterEffect("typewriterText", "Halo! Selamat datang di katalog resmi Store Kyzann.");
+            typeWriterEffect("typewriterText", "Halo! Selamat datang di katalog resmi Kyzann Bussines.");
 
         } else if (type === 'editing') {
             sectionTitle.innerText = "EDITING APPS";
             categoryContent.innerHTML = `
                 <div class="sub-category-container">
                     <button class="sub-cat-btn active" onclick="filterSubCat('all', this)">Semua</button>
-                    <button class="sub-cat-btn" onclick="filterSubCat('alightmotion', this)">AM</button>
+                    <button class="sub-cat-btn" onclick="filterSubCat('alightmotion', this)">Alight Motion</button>
                     <button class="sub-cat-btn" onclick="filterSubCat('canva', this)">Canva</button>
                     <button class="sub-cat-btn" onclick="filterSubCat('capcut', this)">CapCut</button>
                     <button class="sub-cat-btn" onclick="filterSubCat('ibispaint', this)">Ibis Paint</button>
@@ -438,13 +438,6 @@ function switchCategory(type, btnElement) {
                         <div class="product-price">Rp 25.000</div>
                         <button class="order-btn-card" onclick="openModal('Wink Private AllDev 1 Bln (Renew)', 25000, 'wink')">Order Now</button>
                     </div>
-                </div>
-            `;
-        } else if (type === 'education') {
-            sectionTitle.innerText = "EDUCATION APPS";
-            categoryContent.innerHTML = `
-                <div class="content-card">
-                    <div class="content-card-body">Produk belum tersedia / sedang diperbarui.</div>
                 </div>
             `;
         } else if (type === 'music') {
@@ -755,7 +748,7 @@ function switchCategory(type, btnElement) {
                         <i class="fa-solid fa-gamepad product-icon"></i>
                         <div class="product-name">Find ID MLBB</div>
                         <div class="product-price">Rp 5.000</div>
-                        <button class="order-btn-card" onclick="openModal('Find ID MLBB', 5000, 'mlchecker')">Order Now</button>
+                        <button class="order-btn-card" onclick="openModal('Find ID MLBB', 5.000, 'mlchecker')">Order Now</button>
                     </div>
                     <div class="product-card">
                         <i class="fa-solid fa-gamepad product-icon"></i>
